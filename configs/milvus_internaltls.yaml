@@ -747,7 +747,7 @@ internaltls:
       serverPemPath: configs/cert1/server.pem
       serverKeyPath: configs/cert1/server.key
       caPemPath: configs/cert1/ca.pem
-      internalAdd: #pod internal address
+      internalAdd: ${HOSTNAME}
 
 common:
   defaultPartitionName: _default # Name of the default partition when a collection is created
@@ -782,7 +782,7 @@ common:
     superUsers: 
     defaultRootPassword: Milvus # default password for root user
     tlsMode: 0
-    internaltlsEnabled : false
+    internaltlsEnabled : true
   session:
     ttl: 30 # ttl value when session granting a lease to register service
     retryTimes: 30 # retry times when session sending etcd requests
