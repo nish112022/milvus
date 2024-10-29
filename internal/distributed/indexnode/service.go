@@ -33,7 +33,6 @@ import (
 	"github.com/milvus-io/milvus-proto/go-api/v2/milvuspb"
 	"github.com/milvus-io/milvus/internal/distributed/utils"
 	"github.com/milvus-io/milvus/internal/indexnode"
-	"github.com/milvus-io/milvus/internal/proto/indexpb"
 	"github.com/milvus-io/milvus/internal/proto/internalpb"
 	"github.com/milvus-io/milvus/internal/proto/workerpb"
 	"github.com/milvus-io/milvus/internal/types"
@@ -142,7 +141,7 @@ func (s *Server) startGrpcLoop() {
 
 	grpcOpts = append(grpcOpts, utils.EnableInternalTLS("IndexNode"))
 	s.grpcServer = grpc.NewServer(grpcOpts...)
-	indexpb.RegisterIndexNodeServer(s.grpcServer, s)
+	workerpb.RegisterIndexNodeServer(s.grpcServer, s)
 	go funcutil.CheckGrpcReady(ctx, s.grpcErrChan)
 	if err := s.grpcServer.Serve(s.listener); err != nil {
 		s.grpcErrChan <- err

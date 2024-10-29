@@ -81,6 +81,8 @@ type ComponentParam struct {
 	RoleCfg       roleConfig
 	StreamingCfg  streamingConfig
 
+	InternalTLSCfg InternalTLSConfig
+
 	RootCoordGrpcServerCfg     GrpcServerConfig
 	ProxyGrpcServerCfg         GrpcServerConfig
 	QueryCoordGrpcServerCfg    GrpcServerConfig
@@ -134,6 +136,8 @@ func (p *ComponentParam) init(bt *BaseTable) {
 	p.LogCfg.init(bt)
 	p.RoleCfg.init(bt)
 	p.GpuConfig.init(bt)
+
+	p.InternalTLSCfg.init(bt)
 
 	p.RootCoordGrpcServerCfg.Init("rootCoord", bt)
 	p.ProxyGrpcServerCfg.Init("proxy", bt)
